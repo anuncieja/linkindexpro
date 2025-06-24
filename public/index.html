@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinkIndex PRO - Indexador Automático de Links</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <i class="fas fa-link"></i>
+                <h1>LinkIndex PRO</h1>
+            </div>
+            <p class="subtitle">Indexador Automático de Links - Estilo LinkCentaur</p>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Input Section -->
+            <section class="input-section">
+                <div class="card">
+                    <h2><i class="fas fa-plus-circle"></i> Adicionar URLs</h2>
+                    <div class="input-group">
+                        <textarea 
+                            id="urlInput" 
+                            placeholder="Cole suas URLs aqui, uma por linha...&#10;&#10;Exemplo:&#10;https://exemplo1.com&#10;https://exemplo2.com&#10;https://exemplo3.com"
+                            rows="8"
+                        ></textarea>
+                        <div class="input-actions">
+                            <button id="clearBtn" class="btn btn-secondary">
+                                <i class="fas fa-trash"></i> Limpar
+                            </button>
+                            <button id="startBtn" class="btn btn-primary">
+                                <i class="fas fa-rocket"></i> Iniciar Indexação
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Options -->
+                <div class="card options-card">
+                    <h3><i class="fas fa-cog"></i> Opções</h3>
+                    <div class="options-grid">
+                        <label class="option-item">
+                            <input type="checkbox" id="simulateTraffic" checked>
+                            <span class="checkmark"></span>
+                            Simular Tráfego
+                        </label>
+                        <label class="option-item">
+                            <input type="checkbox" id="checkIndexing" checked>
+                            <span class="checkmark"></span>
+                            Verificar Indexação
+                        </label>
+                        <label class="option-item">
+                            <input type="checkbox" id="createRSS" checked>
+                            <span class="checkmark"></span>
+                            Criar RSS
+                        </label>
+                        <label class="option-item">
+                            <input type="checkbox" id="createBacklinks" checked>
+                            <span class="checkmark"></span>
+                            Criar Backlinks
+                        </label>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Progress Section -->
+            <section class="progress-section" id="progressSection" style="display: none;">
+                <div class="card">
+                    <h2><i class="fas fa-chart-line"></i> Progresso da Indexação</h2>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                        <span class="progress-text" id="progressText">0%</span>
+                    </div>
+                    <div class="current-step" id="currentStep">
+                        Aguardando início...
+                    </div>
+                </div>
+            </section>
+
+            <!-- Log Section -->
+            <section class="log-section">
+                <div class="card">
+                    <div class="log-header">
+                        <h2><i class="fas fa-terminal"></i> Log em Tempo Real</h2>
+                        <div class="log-actions">
+                            <button id="saveLogBtn" class="btn btn-secondary" disabled>
+                                <i class="fas fa-download"></i> Salvar Log
+                            </button>
+                            <button id="clearLogBtn" class="btn btn-secondary">
+                                <i class="fas fa-broom"></i> Limpar Log
+                            </button>
+                        </div>
+                    </div>
+                    <div class="log-container" id="logContainer">
+                        <div class="log-entry info">
+                            <span class="timestamp">[${new Date().toLocaleTimeString()}]</span>
+                            <span class="message">LinkIndex PRO iniciado. Aguardando URLs...</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Results Section -->
+            <section class="results-section" id="resultsSection" style="display: none;">
+                <div class="card">
+                    <h2><i class="fas fa-chart-bar"></i> Resultados</h2>
+                    <div class="results-grid" id="resultsGrid">
+                        <!-- Results will be populated here -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Files Section -->
+            <section class="files-section">
+                <div class="card">
+                    <h2><i class="fas fa-folder-open"></i> Arquivos Gerados</h2>
+                    <div class="files-list" id="filesList">
+                        <div class="no-files">
+                            <i class="fas fa-file-alt"></i>
+                            <p>Nenhum arquivo gerado ainda</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2024 LinkIndex PRO - Ferramenta de Indexação Automática</p>
+            <div class="footer-links">
+                <button id="resetBtn" class="btn btn-outline">
+                    <i class="fas fa-refresh"></i> Reiniciar
+                </button>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay" style="display: none;">
+        <div class="loading-spinner">
+            <i class="fas fa-spinner fa-spin"></i>
+            <p>Processando...</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
